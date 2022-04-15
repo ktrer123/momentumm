@@ -12,8 +12,9 @@ function saveToDos() {
 
 function deleteToDo(event) {
   const li = event.target.parentElement;
-  toDos = toDos.filter((toDo) => toDo.id !== parseInt(li.id));
   li.remove();
+  toDos = toDos.filter((toDo) => toDo.id !== parseInt(li.id));
+  saveToDos();
 }
 
 function paintToDo(newToDo) {
@@ -44,10 +45,6 @@ function hendleToDoSubmit(event) {
 
 toDoForm.addEventListener("submit", hendleToDoSubmit);
 
-function sayHello(item) {
-  console.log("this is the turn of", item);
-}
-
 const savedTodDos = localStorage.getItem(TODOS_KEY);
 
 if (savedTodDos !== null) {
@@ -55,5 +52,3 @@ if (savedTodDos !== null) {
   toDos = parsedToDos;
   parsedToDos.forEach(paintToDo);
 }
-
-function sexyFilter() {}
